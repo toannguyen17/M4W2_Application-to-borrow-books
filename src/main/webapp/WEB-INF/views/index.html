@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ứng dụng mượn sách</title>
+    <style>
+        img {
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <h4>Thư viện sách</h4>
+    <table border="1">
+        <thead>
+        <tr>
+            <td>ID sách</td>
+            <td>Tên sách</td>
+            <td>Số lượng</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${list}">
+            <td th:text="${book.getId()}"></td>
+            <td th:text="${book.getName()}"></td>
+            <td th:text="${book.getNumber()}"></td>
+            <td><a th:href="@{/__${book.getId()}__}">Mượn sách</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <br />
+    <br />
+    <h4>Sách đã mượn</h4>
+    <table border="1">
+        <thead>
+        <tr>
+            <td>ID sách</td>
+            <td>Tên sách</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="myBook : ${MyBooks.getList()}">
+            <td th:text="${myBook.getId()}"></td>
+            <td th:text="${myBook.getName()}"></td>
+            <td><a th:href="@{/tra/__${myBook.getId()}__}">Trả sách</a></td>
+        </tr>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>
